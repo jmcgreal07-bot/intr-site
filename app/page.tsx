@@ -307,7 +307,6 @@ Notes: ${form.notes}`
             <Input label="Email" placeholder="Email address" value={form.email} onChange={(v) => update("email", v)} />
             <Select label="Service" value={form.service} onChange={(v) => update("service", v)} options={["Select a service", "Interior Detail", "Exterior Detail", "Full Detail"]} />
             <Select label="Vehicle Type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Select type", "Sedan/Coupe", "SUV/Truck"]} />
-            <Select label="Vehicle Condition" value={form.condition} onChange={(v) => update("condition", v)} options={["Select condition", "Light", "Moderate", "Heavy"]} />
             <Input label="Preferred Date" type="date" value={form.date} onChange={(v) => update("date", v)} />
            <div>
   <label className="mb-2 block text-sm font-medium text-slate-700">
