@@ -84,7 +84,6 @@ export default function INTRWebsite() {
     email: "",
     service: "",
     vehicle: "",
-    condition: "",
     date: "",
     time: "",
     address: "",
@@ -101,7 +100,6 @@ Phone: ${form.phone}
 Email: ${form.email}
 Service: ${form.service}
 Vehicle Type: ${form.vehicle}
-Vehicle Condition: ${form.condition}
 Preferred Date: ${form.date}
 Preferred Time: ${form.time}
 Address / Location: ${form.address}
