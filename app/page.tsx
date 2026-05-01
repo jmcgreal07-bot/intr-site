@@ -331,6 +331,12 @@ Notes: ${form.notes}`
           <button type="submit" className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg px-6 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5" style={{ background: `linear-gradient(135deg, ${BLUE}, ${SOFT_BLUE})` }}>
             Send Request <Send size={16} strokeWidth={ICON_STROKE} />
           </button>
+          <p className="text-sm text-slate-500 mt-3 text-center">
+  Prefer to book faster?{" "}
+  <a href="sms:6304570168" className="text-blue-500 font-semibold">
+    Text us at 630-457-0168
+  </a>
+</p>
         </form>
       </section>
 
