@@ -309,7 +309,19 @@ Notes: ${form.notes}`
             <Select label="Vehicle Type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Select type", "Sedan/Coupe", "SUV/Truck"]} />
             <Select label="Vehicle Condition" value={form.condition} onChange={(v) => update("condition", v)} options={["Select condition", "Light", "Moderate", "Heavy"]} />
             <Input label="Preferred Date" type="date" value={form.date} onChange={(v) => update("date", v)} />
-            <Input label="Preferred Time" type="time" value={form.time} onChange={(v) => update("time", v)} />
+           <div>
+  <label className="mb-2 block text-sm font-medium text-slate-700">
+    Preferred Time
+  </label>
+  <select
+    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+  >
+    <option value="">Select time</option>
+    <option value="morning">Morning</option>
+    <option value="afternoon">Afternoon</option>
+    <option value="evening">Evening</option>
+  </select>
+</div>
           </div>
 
           <Input label="Address / Location" placeholder="Street address or location" value={form.address} onChange={(v) => update("address", v)} className="mt-5" />
