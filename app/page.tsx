@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   AtSign,
@@ -17,13 +17,13 @@ import {
   Send,
   ShieldCheck,
   Sparkles,
-  Star,
 } from "lucide-react";
 
 const NAVY = "#04112c";
 const BLUE = "#3e9df2";
 const SOFT_BLUE = "#6ba4d8";
 const ICON_STROKE = 1.85;
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 const services = [
   {
@@ -90,24 +90,6 @@ export default function INTRWebsite() {
     notes: "",
   });
 
-  const mailtoLink = useMemo(() => {
-    const subject = encodeURIComponent("INTR Service Request");
-    const body = encodeURIComponent(
-      `New service request:
-
-Name: ${form.name}
-Phone: ${form.phone}
-Email: ${form.email}
-Service: ${form.service}
-Vehicle Type: ${form.vehicle}
-Preferred Date: ${form.date}
-Preferred Time: ${form.time}
-Address / Location: ${form.address}
-Notes: ${form.notes}`
-    );
-    return `mailto:intrdetail@gmail.com?subject=${subject}&body=${body}`;
-  }, [form]);
-
   function update(key: string, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
@@ -119,7 +101,8 @@ Notes: ${form.notes}`
 
         <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-7 md:px-8">
           <a href="#top" aria-label="INTR Auto Detail home" className="block">
-<Logo variant="white" className="h-28 w-80 md:h-32 md:w-[380px]" />          </a>
+            <Logo variant="white" className="h-28 w-80 md:h-32 md:w-[380px]" />
+          </a>
 
           <div className="hidden items-center gap-12 text-sm font-semibold text-white/90 md:flex">
             <a href="#services" className="transition hover:text-white">Services</a>
@@ -298,45 +281,33 @@ Notes: ${form.notes}`
           </div>
         </div>
 
-        <form className="border-t border-slate-200 px-5 py-10 md:border-l md:border-t-0 md:px-10 md:py-12" onSubmit={(event) => { event.preventDefault(); window.location.href = mailtoLink; }}>
+        <form action={FORMSPREE_ENDPOINT} method="POST" className="border-t border-slate-200 px-5 py-10 md:border-l md:border-t-0 md:px-10 md:py-12">
+          <input type="hidden" name="_subject" value="New INTR Booking Request" />
+
           <div className="grid gap-5 md:grid-cols-2">
-            <Input label="Name" placeholder="Full name" value={form.name} onChange={(v) => update("name", v)} />
-            <Input label="Phone" placeholder="Phone number" value={form.phone} onChange={(v) => update("phone", v)} />
-            <Input label="Email" placeholder="Email address" value={form.email} onChange={(v) => update("email", v)} />
-            <Select label="Service" value={form.service} onChange={(v) => update("service", v)} options={["Select a service", "Interior Detail", "Exterior Detail", "Full Detail"]} />
-            <Select label="Vehicle Type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Select type", "Sedan/Coupe", "SUV/Truck"]} />
-            <Input label="Preferred Date" type="date" value={form.date} onChange={(v) => update("date", v)} />
-           <div>
-  <label className="mb-2 block text-sm font-medium text-slate-700">
-    Preferred Time
-  </label>
-  <select
-    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-  >
-    <option value="">Select time</option>
-    <option value="morning">Morning</option>
-    <option value="afternoon">Afternoon</option>
-    <option value="evening">Evening</option>
-  </select>
-</div>
+            <Input name="name" label="Name" placeholder="Full name" value={form.name} onChange={(v) => update("name", v)} />
+            <Input name="phone" label="Phone" placeholder="Phone number" value={form.phone} onChange={(v) => update("phone", v)} />
+            <Input name="email" label="Email" placeholder="Email address" value={form.email} onChange={(v) => update("email", v)} />
+            <Select name="service" label="Service" value={form.service} onChange={(v) => update("service", v)} options={["Select a service", "Interior Detail", "Exterior Detail", "Full Detail"]} />
+            <Select name="vehicle_type" label="Vehicle Type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Select type", "Sedan/Coupe", "SUV/Truck"]} />
+            <Input name="preferred_date" label="Preferred Date" type="date" value={form.date} onChange={(v) => update("date", v)} />
+            <Select name="preferred_time" label="Preferred Time" value={form.time} onChange={(v) => update("time", v)} options={["Select time", "Morning", "Afternoon", "Evening"]} />
           </div>
 
-          <Input label="Address / Location" placeholder="Street address or location" value={form.address} onChange={(v) => update("address", v)} className="mt-5" />
+          <Input name="address" label="Address / Location" placeholder="Street address or location" value={form.address} onChange={(v) => update("address", v)} className="mt-5" />
 
           <label className="mt-5 block">
             <span className="mb-2 block text-sm font-bold text-slate-700">Notes (optional)</span>
-            <textarea value={form.notes} onChange={(e) => update("notes", e.target.value)} rows={3} placeholder="Additional details about your vehicle or request" className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-300 focus:bg-white" />
+            <textarea name="notes" value={form.notes} onChange={(e) => update("notes", e.target.value)} rows={3} placeholder="Additional details about your vehicle or request" className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-300 focus:bg-white" />
           </label>
 
           <button type="submit" className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg px-6 py-4 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5" style={{ background: `linear-gradient(135deg, ${BLUE}, ${SOFT_BLUE})` }}>
             Send Request <Send size={16} strokeWidth={ICON_STROKE} />
           </button>
-          <p className="text-sm text-slate-500 mt-3 text-center">
-  Prefer to book faster?{" "}
-  <a href="sms:6304570168" className="text-blue-500 font-semibold">
-    Text us at 630-457-0168
-  </a>
-</p>
+
+          <p className="mt-4 text-center text-sm font-semibold text-slate-500">
+            Prefer to book faster? <a href="sms:6304570168" className="font-extrabold" style={{ color: BLUE }}>Text us at 630-457-0168</a>
+          </p>
         </form>
       </section>
 
@@ -344,7 +315,8 @@ Notes: ${form.notes}`
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div>
-<Logo variant="white" className="h-28 w-80" />              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.28em] text-white/55">Clean. Restore. Renew.</p>
+              <Logo variant="white" className="h-16 w-52" />
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.28em] text-white/55">Clean. Restore. Renew.</p>
             </div>
 
             <div className="grid gap-5 text-sm font-bold text-white/82 sm:grid-cols-2 lg:grid-cols-4">
@@ -419,7 +391,7 @@ function GalleryCard({ title, src, icon: Icon }: { title: string; src: string; i
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_8px_24px_rgba(2,8,20,.08)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-        {!failed ? (
+        {src && !failed ? (
           <img src={src} alt={title} onError={() => setFailed(true)} className="h-full w-full object-cover" />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 via-slate-100 to-slate-300">
@@ -445,20 +417,20 @@ function FooterLink({ href, icon: Icon, label }: { href: string; icon: React.Ele
   );
 }
 
-function Input({ label, value, onChange, type = "text", placeholder = "", className = "" }: { label: string; value: string; onChange: (value: string) => void; type?: string; placeholder?: string; className?: string }) {
+function Input({ name, label, value, onChange, type = "text", placeholder = "", className = "" }: { name: string; label: string; value: string; onChange: (value: string) => void; type?: string; placeholder?: string; className?: string }) {
   return (
     <label className={`block ${className}`}>
       <span className="mb-2 block text-sm font-bold text-slate-700">{label}</span>
-      <input type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-300 focus:bg-white" />
+      <input name={name} type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-300 focus:bg-white" />
     </label>
   );
 }
 
-function Select({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: string[] }) {
+function Select({ name, label, value, onChange, options }: { name: string; label: string; value: string; onChange: (value: string) => void; options: string[] }) {
   return (
     <label className="block">
       <span className="mb-2 block text-sm font-bold text-slate-700">{label}</span>
-      <select value={value} onChange={(e) => onChange(e.target.value)} className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-300 focus:bg-white">
+      <select name={name} value={value} onChange={(e) => onChange(e.target.value)} className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-300 focus:bg-white">
         {options.map((option) => <option key={option}>{option}</option>)}
       </select>
     </label>
