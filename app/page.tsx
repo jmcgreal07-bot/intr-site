@@ -281,7 +281,11 @@ export default function INTRWebsite() {
           </div>
         </div>
 
-        <form action={FORMSPREE_ENDPOINT} method="POST" className="border-t border-slate-200 px-5 py-10 md:border-l md:border-t-0 md:px-10 md:py-12">
+        <form
+  action="https://formspree.io/f/xwvyprep"
+  method="POST"
+  className="border-t border-slate-200 px-5 py-10 md:border-l md:border-t-0 md:px-10 md:py-12"
+>
           <input type="hidden" name="_subject" value="New INTR Booking Request" />
 
           <div className="grid gap-5 md:grid-cols-2">
