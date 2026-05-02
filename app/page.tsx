@@ -84,7 +84,7 @@ export default function INTRWebsite() {
     email: "",
     service: "",
     vehicle: "",
-    date: "",
+    week: "",
     time: "",
     address: "",
     notes: "",
@@ -93,7 +93,31 @@ export default function INTRWebsite() {
   function update(key: string, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
+function getWeeks() {
+  const weeks = ["Select week"];
 
+  const start = new Date(2026, 4, 18); // May 18, 2026 (Monday)
+  const end = new Date(2026, 7, 16);   // Aug 16, 2026 (Sunday)
+
+  let current = new Date(start);
+
+  while (current <= end) {
+    const monday = new Date(current);
+    const sunday = new Date(current);
+    sunday.setDate(sunday.getDate() + 6);
+
+    const format = (date: Date) =>
+      `${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")}`;
+
+    weeks.push(
+      `Monday ${format(monday)} - Sunday ${format(sunday)}`
+    );
+
+    current.setDate(current.getDate() + 7);
+  }
+
+  return weeks;
+}
   return (
     <main className="min-h-screen bg-white text-slate-950" style={{ fontFamily: "Montserrat, Inter, system-ui, sans-serif" }}>
       <section id="top" className="relative overflow-hidden text-white" style={{ background: `radial-gradient(circle at 18% 10%, rgba(62,157,242,.22), transparent 28%), linear-gradient(135deg, #020814 0%, ${NAVY} 55%, #06203f 100%)` }}>
@@ -294,7 +318,13 @@ export default function INTRWebsite() {
             <Input name="email" label="Email" placeholder="Email address" value={form.email} onChange={(v) => update("email", v)} />
             <Select name="service" label="Service" value={form.service} onChange={(v) => update("service", v)} options={["Select a service", "Interior Detail", "Exterior Detail", "Full Detail"]} />
             <Select name="vehicle_type" label="Vehicle Type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Select type", "Sedan/Coupe", "SUV/Truck"]} />
-            <Input name="preferred_date" label="Preferred Date" type="date" value={form.date} onChange={(v) => update("date", v)} />
+            <Select
+  name="preferred_week"
+  label="Preferred Week"
+  value={form.week}
+  onChange={(v) => update("week", v)}
+  options={getWeeks()}
+/>
             <Select name="preferred_time" label="Preferred Time" value={form.time} onChange={(v) => update("time", v)} options={["Select time", "Morning", "Afternoon", "Evening"]} />
           </div>
 
