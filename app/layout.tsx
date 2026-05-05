@@ -12,26 +12,32 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "INTR Auto Detail",
-  description: "Clean. Restore. Renew. Premium mobile auto detailing serving Chicagoland, IL.",
+export const metadata: Metadata = {
+  title: "Driveway Detail",
+  description: "Clean car. No hassle. Mobile detailing that comes to you.",
   icons: {
-    icon: "/intr-logo-blue.png",
+    icon: "/driveway-detail-logo.jpg",
   },
   openGraph: {
-    title: "INTR Auto Detail",
-    description: "Clean. Restore. Renew. Premium mobile auto detailing serving Chicagoland, IL.",
+    title: "Driveway Detail",
+    description: "Mobile detailing by a local college student. Simple, reliable, and done right.",
     url: "https://intrdetail.com",
-    siteName: "INTR Auto Detail",
+    siteName: "Driveway Detail",
     images: [
       {
-        url: "/intr-logo-blue.png",
+        url: "https://intrdetail.com/driveway-detail-logo.jpg",
         width: 1200,
         height: 630,
-        alt: "INTR Auto Detail",
+        alt: "Driveway Detail",
       },
     ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Driveway Detail",
+    description: "Clean car. No hassle.",
+    images: ["https://intrdetail.com/driveway-detail-logo.jpg"],
   },
 };
 
