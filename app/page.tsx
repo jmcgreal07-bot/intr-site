@@ -133,17 +133,45 @@ export default function DrivewayDetailWebsite() {
             </div>
           </div>
 
-          <div className="relative z-10 rounded-3xl border border-slate-200 bg-gradient-to-br from-blue-50 to-white p-6 shadow-2xl">
-            <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
-              <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-slate-100 via-blue-50 to-slate-200">
-                <Car size={110} strokeWidth={1.6} style={{ color: BLUE }} />
-              </div>
-              <div className="border-t-4 p-6" style={{ borderColor: RED }}>
-                <h2 className="text-2xl font-black">Mobile detailing at your driveway</h2>
-                <p className="mt-2 font-semibold text-slate-600">Interior, exterior, and full detail packages available.</p>
-              </div>
-            </div>
-          </div>
+          <div className="relative z-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
+  <div className="grid gap-6 md:grid-cols-[220px_1fr] md:items-center">
+    <div className="flex justify-center">
+      <div className="h-52 w-52 overflow-hidden rounded-full border-4 border-blue-100 bg-blue-50 shadow-lg">
+        <img
+          src="/joe-mcgreal.png"
+          alt="Joe McGreal"
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
+    </div>
+
+    <div>
+      <p className="text-sm font-black uppercase tracking-[0.2em]" style={{ color: BLUE }}>
+        About Me
+      </p>
+
+      <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
+        Hi, I’m Joe McGreal.
+      </h2>
+
+      <p className="mt-4 text-base font-semibold leading-7 text-slate-700">
+        I’m a finance and accounting student at the University of Iowa, and I started Driveway Detail to offer reliable, high-quality detailing to my neighborhood and surrounding areas.
+      </p>
+
+      <p className="mt-4 text-base font-semibold leading-7 text-slate-700">
+        If you’re looking for a clean car without the hassle, book a detail today!
+      </p>
+
+      <a
+        href="#booking"
+        className="mt-6 inline-flex rounded-lg px-6 py-3 text-sm font-black uppercase tracking-wide text-white shadow-lg transition hover:-translate-y-0.5"
+        style={{ backgroundColor: RED }}
+      >
+        Book a Detail
+      </a>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
