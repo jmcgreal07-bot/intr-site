@@ -23,21 +23,21 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwvyprep";
 const services = [
   {
     name: "Interior Detail",
-    price: "$95",
+    price: "$115",
     description: "Deep clean of interior surfaces, seats, carpets, mats, and trim.",
     bullets: ["Deep vacuum", "Interior wipe down", "Seats, mats, and trim refreshed"],
   },
   {
     name: "Exterior Detail",
-    price: "$70",
+    price: "$80",
     description: "Hand wash, wheels, tires, exterior glass, and clean finish.",
-    bullets: ["Hand wash", "Wheels and tires cleaned", "Exterior finish wiped down"],
+    bullets: ["Hand wash", "Wheels and tires cleaned", "Exterior glass", "Clean finish wipe down"],
   },
   {
     name: "Full Detail",
-    price: "$180",
+    price: "$175",
     description: "The best value package — complete interior and exterior refresh.",
-    bullets: ["Interior detail", "Exterior detail", "Best value package"],
+    bullets: ["Interior detail", "Exterior detail", "Most popular package"],
   },
 ];
 
