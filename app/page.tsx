@@ -313,7 +313,12 @@ export default function DrivewayDetailWebsite() {
             <Input name="phone" placeholder="Phone Number" value={form.phone} onChange={(v) => update("phone", v)} required />
             <Input name="email" placeholder="Email Address" value={form.email} onChange={(v) => update("email", v)} />
 
-options={["Select Service", "Workday Detail", "Interior Detail", "Exterior Detail", "Full Detail"]}            <Select name="vehicle_type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Vehicle Type", "Sedan/Coupe", "SUV/Truck"]} />
+<Select
+  name="service"
+  value={form.service}
+  onChange={(v) => update("service", v)}
+  options={["Select Service", "Workday Detail", "Interior Detail", "Exterior Detail", "Full Detail"]}
+/>           <Select name="vehicle_type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Vehicle Type", "Sedan/Coupe", "SUV/Truck"]} />
             <Select name="preferred_week" value={form.week} onChange={(v) => update("week", v)} options={getWeeks()} />
             <Select name="preferred_time" value={form.time} onChange={(v) => update("time", v)} options={["Preferred Time", "Morning", "Afternoon", "Evening"]} />
             <Input name="address" placeholder="Address / Location" value={form.address} onChange={(v) => update("address", v)} className="md:col-span-2" />
