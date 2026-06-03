@@ -174,7 +174,64 @@ export default function DrivewayDetailWebsite() {
 </div>
         </div>
       </section>
+<section id="workday-detail" className="bg-blue-50 px-5 py-14 md:px-8 md:py-16">
+  <div className="mx-auto grid max-w-7xl gap-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:grid-cols-[1.25fr_0.85fr] md:p-10">
+    <div>
+      <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>
+        <Sparkles size={16} /> New Service
+      </div>
 
+      <h2 className="text-5xl font-black uppercase leading-none tracking-tight md:text-6xl">
+        Workday <span style={{ color: BLUE }}>Detail</span>
+      </h2>
+
+      <p className="mt-5 max-w-2xl text-xl font-bold text-slate-700">
+        A quick interior clean for your busy schedule.
+      </p>
+
+      <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600">
+        We clean your car while you’re at work, parked at the train station, or away for the day.
+        Come back to a cleaner, refreshed interior without changing your routine.
+      </p>
+
+      <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <MiniFeature title="Save Time" text="No waiting. No hassle." />
+        <MiniFeature title="We Come To You" text="We detail wherever your car is parked." />
+        <MiniFeature title="Come Back Clean" text="Enjoy a fresh, detailed car." />
+      </div>
+
+      <a href="#booking" className="mt-8 inline-flex rounded-lg px-8 py-4 text-sm font-black text-white shadow-lg" style={{ backgroundColor: RED }}>
+        Book Workday Detail
+      </a>
+    </div>
+
+    <div className="overflow-hidden rounded-2xl border-2 border-blue-400 bg-white">
+      <div className="px-5 py-4 text-center text-lg font-black uppercase text-white" style={{ backgroundColor: BLUE }}>
+        Workday Detail — Interior Clean
+      </div>
+
+      <div className="p-7 text-center">
+        <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>Starting At</p>
+        <p className="text-7xl font-black leading-none" style={{ color: RED }}>$79</p>
+
+        <div className="my-7 flex items-center gap-4">
+          <div className="h-px flex-1 bg-blue-300" />
+          <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>Includes</p>
+          <div className="h-px flex-1 bg-blue-300" />
+        </div>
+
+        <ul className="space-y-4 text-left text-base font-bold text-slate-700">
+          {["Light vacuum", "Interior wipe down", "Interior glass", "Protectant", "Seat refresh", "Floor mat refresh"].map((item) => (
+            <li key={item} className="flex items-center gap-3">
+              <CheckCircle2 size={20} fill={BLUE} className="text-white" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
       <section id="services" className="px-5 py-16 md:px-8 md:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionTitle eyebrow="Our Services" title="Simple services. Fair prices." />
@@ -256,8 +313,7 @@ export default function DrivewayDetailWebsite() {
             <Input name="phone" placeholder="Phone Number" value={form.phone} onChange={(v) => update("phone", v)} required />
             <Input name="email" placeholder="Email Address" value={form.email} onChange={(v) => update("email", v)} />
 
-            <Select name="service" value={form.service} onChange={(v) => update("service", v)} options={["Select Service", "Interior Detail", "Exterior Detail", "Full Detail"]} />
-            <Select name="vehicle_type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Vehicle Type", "Sedan/Coupe", "SUV/Truck"]} />
+options={["Select Service", "Workday Detail", "Interior Detail", "Exterior Detail", "Full Detail"]}            <Select name="vehicle_type" value={form.vehicle} onChange={(v) => update("vehicle", v)} options={["Vehicle Type", "Sedan/Coupe", "SUV/Truck"]} />
             <Select name="preferred_week" value={form.week} onChange={(v) => update("week", v)} options={getWeeks()} />
             <Select name="preferred_time" value={form.time} onChange={(v) => update("time", v)} options={["Preferred Time", "Morning", "Afternoon", "Evening"]} />
             <Input name="address" placeholder="Address / Location" value={form.address} onChange={(v) => update("address", v)} className="md:col-span-2" />
@@ -309,7 +365,17 @@ function TrustLine({ icon: Icon, text }: { icon: React.ElementType; text: string
     </div>
   );
 }
-
+function MiniFeature({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-blue-50 p-5 text-center">
+      <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white">
+        <CheckCircle2 size={24} style={{ color: BLUE }} />
+      </div>
+      <h3 className="text-sm font-black uppercase" style={{ color: BLUE }}>{title}</h3>
+      <p className="mt-2 text-sm font-bold text-slate-700">{text}</p>
+    </div>
+  );
+}
 function Input({ name, placeholder, value, onChange, className = "", required = false }: { name: string; placeholder: string; value: string; onChange: (value: string) => void; className?: string; required?: boolean }) {
   return (
     <input
