@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Driveway Detail",
     description: "Mobile detailing by a local college student. Simple, reliable, and done right.",
-    url: "https://intrdetail.com",
+    url: "https://drivewaydetail.us",
     siteName: "Driveway Detail",
     images: [
       {
-        url: "https://intrdetail.com/driveway-detail-logo.jpg",
+        url: "https://drivewaydetail.us/driveway-detail-logo.jpg",
         width: 1200,
         height: 630,
         alt: "Driveway Detail",
