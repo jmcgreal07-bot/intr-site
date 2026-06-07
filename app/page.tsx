@@ -60,7 +60,7 @@ export default function DrivewayDetailWebsite() {
 
   function getWeeks() {
     const weeks = ["Select week"];
-    const start = new Date(2026, 4, 18); // Monday 05/18/2026
+    const start = new Date(2026, 4, 18); // Monday 06/08/2026
     const end = new Date(2026, 7, 16); // Sunday 08/16/2026
     const current = new Date(start);
 
@@ -257,6 +257,36 @@ export default function DrivewayDetailWebsite() {
             ))}
           </div>
         </div>
+        <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/70 p-5 md:p-6">
+  <div className="grid gap-4 md:grid-cols-3">
+    <div>
+      <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>
+        Vehicle Size
+      </p>
+      <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
+        SUV/Truck pricing is slightly higher due to additional surface area and cleaning time.
+      </p>
+    </div>
+
+    <div className="rounded-xl bg-white p-4 shadow-sm">
+      <p className="text-sm font-black text-slate-900">Exterior Detail</p>
+      <p className="mt-1 text-sm font-semibold text-slate-600">
+        SUV/Truck: <span className="font-black" style={{ color: RED }}>+$15</span>
+      </p>
+    </div>
+
+    <div className="rounded-xl bg-white p-4 shadow-sm">
+      <p className="text-sm font-black text-slate-900">Interior & Full Detail</p>
+      <p className="mt-1 text-sm font-semibold text-slate-600">
+        SUV/Truck: <span className="font-black" style={{ color: RED }}>+$30</span>
+      </p>
+    </div>
+  </div>
+
+  <p className="mt-4 border-t border-blue-100 pt-4 text-xs font-semibold leading-5 text-slate-500">
+    Excessive buildup, heavy staining, spills, or dog hair may require additional time and may result in additional charges.
+  </p>
+</div>
       </section>
 
       <section id="why" className="bg-slate-50 px-5 py-16 md:px-8 md:py-20">
