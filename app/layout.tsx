@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Driveway Detail",
   description: "Clean car. No hassle. Mobile detailing that comes to you.",
   icons: {
-    icon: "/driveway-detail-logo.jpg",
+    icon: "/favicon.png",
   },
   openGraph: {
     title: "Driveway Detail",
