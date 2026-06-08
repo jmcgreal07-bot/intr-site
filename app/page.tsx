@@ -316,10 +316,10 @@ export default function DrivewayDetailWebsite() {
   </p>
 
   <div className="mt-6 grid gap-5 md:grid-cols-2">
-    <GalleryPhoto src="/gallery-jeep-before.jpg" label="Before" />
-    <GalleryPhoto src="/gallery-jeep-after.jpg" label="After" />
-    <GalleryPhoto src="/gallery-buick-before.jpg" label="Before" />
-    <GalleryPhoto src="/gallery-buick-after.jpg" label="After" />
+    <GalleryPhoto src="/gallery-jeep-before.jpeg" label="Before" />
+    <GalleryPhoto src="/gallery-jeep-after.jpeg" label="After" />
+    <GalleryPhoto src="/gallery-buick-before.jpeg" label="Before" />
+    <GalleryPhoto src="/gallery-buick-after.jpeg" label="After" />
   </div>
 </div>
         </div>
