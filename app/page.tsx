@@ -303,19 +303,25 @@ export default function DrivewayDetailWebsite() {
           </div>
 
           <div id="gallery" className="rounded-3xl border border-blue-100 bg-white p-6 shadow-lg">
-            <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>See the difference</p>
-            <div className="mt-4 grid gap-4 md:grid-cols-3">
-              {services.map((service) => (
-                <div key={service.name} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-                  <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-slate-100 to-blue-50">
-                    <Sparkles size={46} style={{ color: BLUE }} />
-                  </div>
-                  <div className="p-4 text-center text-sm font-black" style={{ backgroundColor: NAVY, color: "white" }}>{service.name}</div>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-center text-sm font-semibold text-slate-500">Before-and-after photos will be added as appointments are completed.</p>
-          </div>
+  <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>
+    Recent Work
+  </p>
+
+  <h2 className="mt-2 text-3xl font-black uppercase tracking-tight">
+    See the Difference
+  </h2>
+
+  <p className="mt-2 text-sm font-semibold text-slate-600">
+    Real before-and-after results from recent interior details.
+  </p>
+
+  <div className="mt-6 grid gap-5 md:grid-cols-2">
+    <GalleryPhoto src="/gallery-jeep-before.jpg" label="Before" />
+    <GalleryPhoto src="/gallery-jeep-after.jpg" label="After" />
+    <GalleryPhoto src="/gallery-buick-before.jpg" label="Before" />
+    <GalleryPhoto src="/gallery-buick-after.jpg" label="After" />
+  </div>
+</div>
         </div>
       </section>
 
@@ -408,6 +414,25 @@ function MiniFeature({ title, text }: { title: string; text: string }) {
       </div>
       <h3 className="text-sm font-black uppercase" style={{ color: BLUE }}>{title}</h3>
       <p className="mt-2 text-sm font-bold text-slate-700">{text}</p>
+    </div>
+  );
+}
+function GalleryPhoto({ src, label }: { src: string; label: string }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+      <div className="relative aspect-[4/5]">
+        <img
+          src={src}
+          alt={`${label} detail photo`}
+          className="h-full w-full object-cover"
+        />
+        <div
+          className="absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-black uppercase text-white shadow"
+          style={{ backgroundColor: label === "Before" ? "#111827" : BLUE }}
+        >
+          {label}
+        </div>
+      </div>
     </div>
   );
 }
