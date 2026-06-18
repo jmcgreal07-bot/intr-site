@@ -174,6 +174,62 @@ export default function DrivewayDetailWebsite() {
 </div>
         </div>
       </section>
+      <section id="services" className="px-5 py-16 md:px-8 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle eyebrow="Our Services" title="Simple services. Fair prices." />
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {services.map((service) => (
+              <div key={service.name} className="rounded-2xl border border-slate-200 bg-white p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-blue-50">
+                  <Car size={38} strokeWidth={1.8} style={{ color: BLUE }} />
+                </div>
+                <h3 className="mt-6 text-2xl font-black uppercase tracking-tight">{service.name}</h3>
+                <p className="mt-3 min-h-[56px] text-sm font-semibold leading-6 text-slate-600">{service.description}</p>
+                <p className="mt-6 text-xs font-bold uppercase tracking-wide text-slate-500">Starting at</p>
+                <p className="mt-1 text-4xl font-black" style={{ color: RED }}>{service.price}</p>
+                <ul className="mt-6 space-y-2 text-left text-sm font-semibold text-slate-700">
+                  {service.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-center gap-2">
+                      <CheckCircle2 size={17} fill={BLUE} className="text-white" /> {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/70 p-5 md:p-6">
+  <div className="grid gap-4 md:grid-cols-3">
+    <div>
+      <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>
+        Vehicle Size
+      </p>
+      <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
+        SUV/Truck pricing is slightly higher due to additional surface area and cleaning time.
+      </p>
+    </div>
+
+    <div className="rounded-xl bg-white p-4 shadow-sm">
+      <p className="text-sm font-black text-slate-900">Exterior Detail</p>
+      <p className="mt-1 text-sm font-semibold text-slate-600">
+        SUV/Truck: <span className="font-black" style={{ color: RED }}>+$15</span>
+      </p>
+    </div>
+
+    <div className="rounded-xl bg-white p-4 shadow-sm">
+      <p className="text-sm font-black text-slate-900">Interior & Full Detail</p>
+      <p className="mt-1 text-sm font-semibold text-slate-600">
+        SUV/Truck: <span className="font-black" style={{ color: RED }}>+$30</span>
+      </p>
+    </div>
+  </div>
+
+  <p className="mt-4 border-t border-blue-100 pt-4 text-xs font-semibold leading-5 text-slate-500">
+    Excessive buildup, heavy staining, spills, or dog hair may require additional time and may result in additional charges.
+  </p>
+</div>
+      </section>
 <section id="workday-detail" className="bg-blue-50 px-5 py-14 md:px-8 md:py-16">
   <div className="mx-auto grid max-w-7xl gap-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:grid-cols-[1.25fr_0.85fr] md:p-10">
     <div>
@@ -232,63 +288,6 @@ export default function DrivewayDetailWebsite() {
     </div>
   </div>
 </section>
-      <section id="services" className="px-5 py-16 md:px-8 md:py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle eyebrow="Our Services" title="Simple services. Fair prices." />
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {services.map((service) => (
-              <div key={service.name} className="rounded-2xl border border-slate-200 bg-white p-7 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-blue-50">
-                  <Car size={38} strokeWidth={1.8} style={{ color: BLUE }} />
-                </div>
-                <h3 className="mt-6 text-2xl font-black uppercase tracking-tight">{service.name}</h3>
-                <p className="mt-3 min-h-[56px] text-sm font-semibold leading-6 text-slate-600">{service.description}</p>
-                <p className="mt-6 text-xs font-bold uppercase tracking-wide text-slate-500">Starting at</p>
-                <p className="mt-1 text-4xl font-black" style={{ color: RED }}>{service.price}</p>
-                <ul className="mt-6 space-y-2 text-left text-sm font-semibold text-slate-700">
-                  {service.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-center gap-2">
-                      <CheckCircle2 size={17} fill={BLUE} className="text-white" /> {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/70 p-5 md:p-6">
-  <div className="grid gap-4 md:grid-cols-3">
-    <div>
-      <p className="text-sm font-black uppercase tracking-wide" style={{ color: BLUE }}>
-        Vehicle Size
-      </p>
-      <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
-        SUV/Truck pricing is slightly higher due to additional surface area and cleaning time.
-      </p>
-    </div>
-
-    <div className="rounded-xl bg-white p-4 shadow-sm">
-      <p className="text-sm font-black text-slate-900">Exterior Detail</p>
-      <p className="mt-1 text-sm font-semibold text-slate-600">
-        SUV/Truck: <span className="font-black" style={{ color: RED }}>+$15</span>
-      </p>
-    </div>
-
-    <div className="rounded-xl bg-white p-4 shadow-sm">
-      <p className="text-sm font-black text-slate-900">Interior & Full Detail</p>
-      <p className="mt-1 text-sm font-semibold text-slate-600">
-        SUV/Truck: <span className="font-black" style={{ color: RED }}>+$30</span>
-      </p>
-    </div>
-  </div>
-
-  <p className="mt-4 border-t border-blue-100 pt-4 text-xs font-semibold leading-5 text-slate-500">
-    Excessive buildup, heavy staining, spills, or dog hair may require additional time and may result in additional charges.
-  </p>
-</div>
-      </section>
-
       <section id="why" className="bg-slate-50 px-5 py-16 md:px-8 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.75fr_1.25fr] md:items-center">
           <div>
