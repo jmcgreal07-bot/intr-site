@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CalendarDays,
   Car,
@@ -36,13 +36,15 @@ const services = [
     description: "Hand wash, wheels, tires, exterior glass, and clean finish.",
     bullets: ["Hand wash", "Wheels and tires cleaned", "Exterior glass", "Clean finish wipe down"],
   },
-  {
+    {
     name: "Full Detail",
     price: "$175",
     description: "The best value package — complete interior and exterior refresh.",
     bullets: ["Interior detail", "Exterior detail", "Most popular package"],
   },
-  const reviews = [
+];
+
+const reviews = [
   { text: "Coming soon.", name: "Customer" },
   { text: "Coming soon.", name: "Customer" },
   { text: "Coming soon.", name: "Customer" },
@@ -66,20 +68,21 @@ export default function DrivewayDetailWebsite() {
 
     const [reviewSlide, setReviewSlide] = useState(0);
 
-  const reviewSlides = [];
-  for (let i = 0; i < reviews.length; i += 3) {
-    reviewSlides.push(reviews.slice(i, i + 3));
-  }
+function nextReviewSlide() {
+  setReviewSlide((prev) => (prev + 1) % reviews.length);
+}
 
-  function nextReviewSlide() {
-    setReviewSlide((prev) => (prev + 1) % reviewSlides.length);
-  }
+function prevReviewSlide() {
+  setReviewSlide((prev) => (prev - 1 + reviews.length) % reviews.length);
+}
 
-  function prevReviewSlide() {
-    setReviewSlide((prev) =>
-      (prev - 1 + reviewSlides.length) % reviewSlides.length
-    );
-  }
+useEffect(() => {
+  const interval = setInterval(() => {
+    nextReviewSlide();
+  }, 6000);
+
+  return () => clearInterval(interval);
+}, []);
 
   function update(key: string, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -341,51 +344,38 @@ export default function DrivewayDetailWebsite() {
       </div>
     </div>
 
-    <div className="mt-10 grid gap-6 md:grid-cols-3">
-      {reviewSlides[reviewSlide].map((review, index) => (
-        <div
-          key={`${review.name}-${index}`}
-          className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
-        >
-          <div className="mb-4 flex gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                size={18}
-                fill={BLUE}
-                strokeWidth={1.8}
-                style={{ color: BLUE }}
-              />
-            ))}
-          </div>
+    {/* Desktop: 3 reviews per slide */}
+    <div className="mt-10 hidden gap-6 md:grid md:grid-cols-3">
+      {[0, 1, 2].map((offset) => {
+        const review = reviews[(reviewSlide + offset) % reviews.length];
 
-          <p className="min-h-[70px] text-base font-semibold leading-7 text-slate-700">
-            “{review.text}”
-          </p>
-
-          <p className="mt-5 text-sm font-black uppercase tracking-wide text-slate-900">
-            — {review.name}
-          </p>
-        </div>
-      ))}
+        return (
+          <ReviewCard
+            key={`${review.name}-${offset}`}
+            review={review}
+          />
+        );
+      })}
     </div>
 
-    <div className="mt-6 flex justify-center gap-2 md:hidden">
-      <button
-        type="button"
-        onClick={prevReviewSlide}
-        className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black"
-      >
-        Previous
-      </button>
+    {/* Mobile: 1 review per slide */}
+    <div className="mt-10 md:hidden">
+      <ReviewCard review={reviews[reviewSlide]} />
+    </div>
 
-      <button
-        type="button"
-        onClick={nextReviewSlide}
-        className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black"
-      >
-        Next
-      </button>
+    <div className="mt-7 flex justify-center gap-2">
+      {reviews.map((_, index) => (
+        <button
+          key={index}
+          type="button"
+          onClick={() => setReviewSlide(index)}
+          className="h-2.5 w-2.5 rounded-full transition"
+          style={{
+            backgroundColor: index === reviewSlide ? RED : "#CBD5E1",
+          }}
+          aria-label={`Go to review ${index + 1}`}
+        />
+      ))}
     </div>
   </div>
 </section>
@@ -533,6 +523,35 @@ function GalleryPhoto({ src, label }: { src: string; label: string }) {
           {label}
         </div>
       </div>
+    </div>
+  );
+}
+function ReviewCard({
+  review,
+}: {
+  review: { text: string; name: string };
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+      <div className="mb-4 flex gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            size={18}
+            fill={BLUE}
+            strokeWidth={1.8}
+            style={{ color: BLUE }}
+          />
+        ))}
+      </div>
+
+      <p className="min-h-[70px] text-base font-semibold leading-7 text-slate-700">
+        “{review.text}”
+      </p>
+
+      <p className="mt-5 text-sm font-black uppercase tracking-wide text-slate-900">
+        — {review.name}
+      </p>
     </div>
   );
 }
