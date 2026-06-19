@@ -12,6 +12,9 @@ import {
   Send,
   ShieldCheck,
   Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  Star,
 } from "lucide-react";
 
 const RED = "#e50914";
@@ -39,6 +42,13 @@ const services = [
     description: "The best value package — complete interior and exterior refresh.",
     bullets: ["Interior detail", "Exterior detail", "Most popular package"],
   },
+  const reviews = [
+  { text: "Coming soon.", name: "Customer" },
+  { text: "Coming soon.", name: "Customer" },
+  { text: "Coming soon.", name: "Customer" },
+  { text: "Coming soon.", name: "Customer" },
+  { text: "Coming soon.", name: "Customer" },
+  { text: "Coming soon.", name: "Customer" },
 ];
 
 export default function DrivewayDetailWebsite() {
@@ -53,6 +63,23 @@ export default function DrivewayDetailWebsite() {
     address: "",
     notes: "",
   });
+
+    const [reviewSlide, setReviewSlide] = useState(0);
+
+  const reviewSlides = [];
+  for (let i = 0; i < reviews.length; i += 3) {
+    reviewSlides.push(reviews.slice(i, i + 3));
+  }
+
+  function nextReviewSlide() {
+    setReviewSlide((prev) => (prev + 1) % reviewSlides.length);
+  }
+
+  function prevReviewSlide() {
+    setReviewSlide((prev) =>
+      (prev - 1 + reviewSlides.length) % reviewSlides.length
+    );
+  }
 
   function update(key: string, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -285,6 +312,80 @@ export default function DrivewayDetailWebsite() {
           ))}
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+<section id="reviews" className="bg-white px-5 py-16 md:px-8 md:py-20">
+  <div className="mx-auto max-w-7xl">
+    <div className="flex items-end justify-between gap-6">
+      <SectionTitle eyebrow="Reviews" title="Happy customers." />
+
+      <div className="hidden gap-3 md:flex">
+        <button
+          type="button"
+          onClick={prevReviewSlide}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition hover:border-blue-300"
+          aria-label="Previous reviews"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <button
+          type="button"
+          onClick={nextReviewSlide}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition hover:border-blue-300"
+          aria-label="Next reviews"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+
+    <div className="mt-10 grid gap-6 md:grid-cols-3">
+      {reviewSlides[reviewSlide].map((review, index) => (
+        <div
+          key={`${review.name}-${index}`}
+          className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
+        >
+          <div className="mb-4 flex gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Star
+                key={star}
+                size={18}
+                fill={BLUE}
+                strokeWidth={1.8}
+                style={{ color: BLUE }}
+              />
+            ))}
+          </div>
+
+          <p className="min-h-[70px] text-base font-semibold leading-7 text-slate-700">
+            “{review.text}”
+          </p>
+
+          <p className="mt-5 text-sm font-black uppercase tracking-wide text-slate-900">
+            — {review.name}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div className="mt-6 flex justify-center gap-2 md:hidden">
+      <button
+        type="button"
+        onClick={prevReviewSlide}
+        className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black"
+      >
+        Previous
+      </button>
+
+      <button
+        type="button"
+        onClick={nextReviewSlide}
+        className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black"
+      >
+        Next
+      </button>
     </div>
   </div>
 </section>
