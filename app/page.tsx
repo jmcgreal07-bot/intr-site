@@ -45,9 +45,9 @@ const services = [
 ];
 
 const reviews = [
-  { text: "Coming soon.", name: "Customer" },
-  { text: "Coming soon.", name: "Customer" },
-  { text: "Coming soon.", name: "Customer" },
+  { text: "I highly recommend Driveway Detail! Joe did a fantastic job! He was prompt, professional and did a thorough job - my car is so fresh and clean! ", name: "Liz" },
+  { text: "Couldn’t be happier with the service. He did a really great job", name: "Jake" },
+  { text: "Both of our cars were full of crumbs, children's toys, and general mess, but he turned it from embarrassing to spotless in less than three hours per car! ... When my daughter got into the car afterward, her reaction was, 'Wow, I've never seen this car so clean!' That pretty much says it all.", name: "Seana" },
   { text: "Coming soon.", name: "Customer" },
   { text: "Coming soon.", name: "Customer" },
   { text: "Coming soon.", name: "Customer" },
