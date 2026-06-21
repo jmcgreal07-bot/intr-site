@@ -79,7 +79,7 @@ function prevReviewSlide() {
 useEffect(() => {
   const interval = setInterval(() => {
     nextReviewSlide();
-  }, 6000);
+  }, 10000);
 
   return () => clearInterval(interval);
 }, []);
@@ -117,11 +117,16 @@ useEffect(() => {
           </a>
 
           <div className="hidden items-center gap-10 text-sm font-bold uppercase tracking-wide text-slate-800 md:flex">
-            <a href="#services" className="hover:text-red-600">Services</a>
-            <a href="#why" className="hover:text-red-600">Why Us</a>
-            <a href="#gallery" className="hover:text-red-600">Gallery</a>
-            <a href="#booking" className="hover:text-red-600">Book</a>
-          </div>
+    <a href="#services" className="hover:text-red-600">Services</a>
+
+    <a href="#why" className="hover:text-red-600">Why Us</a>
+
+    <a href="#gallery" className="hover:text-red-600">Gallery</a>
+
+    <a href="#reviews" className="hover:text-red-600">Reviews</a>
+
+    <a href="#booking" className="hover:text-red-600">Book</a>
+</div>
 
           <a href="#booking" className="rounded-lg px-6 py-3 text-sm font-black text-white shadow-lg transition hover:-translate-y-0.5" style={{ backgroundColor: RED }}>
             Book Now
